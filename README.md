@@ -5,7 +5,7 @@ are required to produce an application that will output an actor’s route in th
 form of two - dimensional points from start to finish.
 
 # Instructions
-Once you clone the repository you'll find ```main.rb , maze.rb``` and three maze samples ```maze1.txt, maze2.txt, maze3.txt```. 
+In the repository you'll find ```main.rb , maze.rb``` and five maze samples ```maze1.txt, maze2.txt, maze3.txt, maze4.txt, maze5.txt```. 
 Run ```ruby main.rb``` and follow the instructions.
 
 # Algorithm used
