@@ -40,13 +40,13 @@ class Maze
     @path = []
     @visited = []
     @previous = []
-    @queue = Queue.new
+    @queue = []
 
     #Initialize bfs
     @visited << @start
     @queue << @start
     until @queue.empty? 
-      current_node = @queue.deq
+      current_node = @queue.shift
       x = current_node[0]
       y = current_node[1]
       neighbors_of(x,y)
