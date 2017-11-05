@@ -1,9 +1,6 @@
-class Maze
-
+class Maze	
 	require 'matrix'
-
-	def initialization(filename)
-
+	def initialize(filename)
 		#Read the file with name filename and pass the included maze in a two dimensional array
 		begin
 			maze = File.read(filename)
@@ -12,27 +9,22 @@ class Maze
 		  	exit
 		end
 
-		@@array = maze.split("\n")
-		@@array.map! {|x| x.chars}
+		@array = maze.split("\n")
+		@array.map! {|x| x.chars}
 
 		#Find width and height of maze
-		@@width = Matrix[*@@array].row_count
-		@@height = Matrix[*@@array].column_count
+		@width = Matrix[*@array].row_count
+		@height = Matrix[*@array].column_count
 
 		#Find start and finish point in maze
-		@@start = Matrix[*@@array].index("s")
-		@@finish = Matrix[*@@array].index("f")
+		@start = Matrix[*@array].index("s")
+		@finish = Matrix[*@array].index("f")
 
 	end
 
-end
-
-	
-class Solution < Maze
-
 	#Check if a given spot is inside the maze
   	def maze_limits?(spot)
-	    -1 < spot[0] && spot[0] < @@width && -1 < spot[1] && spot[1] < @@height
+	    -1 < spot[0] && spot[0] < @width && -1 < spot[1] && spot[1] < @height
 	end
 
 	#Find the neighbors of node(x,y)
@@ -52,8 +44,8 @@ class Solution < Maze
 		@queue = Queue.new
 
 		#Initialize bfs
-		@visited << @@start
-		@queue << @@start
+		@visited << @start
+		@queue << @start
 		until @queue.empty? 
 			current_node = @queue.deq
 			x = current_node[0]
@@ -61,7 +53,7 @@ class Solution < Maze
 			neighbors_of(x,y)
 			@neighbors.each do |neighbor|
 				if maze_limits?(neighbor)
-					node = @@array[neighbor[0]][neighbor[1]]
+					node = @array[neighbor[0]][neighbor[1]]
 
 					#Check whether the node has already been visited or is accesible
 					if !@visited.include?(neighbor) && ( node == '-' || node == 'f')
@@ -81,10 +73,7 @@ class Solution < Maze
 		end
 	end
 
-
-
 	def path
-
 		bfs
 		#Find the path from s to f with "previous" array
 		@previous = @previous.reverse
@@ -95,7 +84,6 @@ class Solution < Maze
 		  if pair[1] == goal
 		    @path << pair[0]
 		    goal = pair[0]
-		    
 		  end
 		end
 		@path = @path.reverse

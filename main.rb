@@ -5,12 +5,9 @@ puts "Please insert the filename of a maze"
 filename = gets.chomp
 
 #Create new maze object
-maze = Maze.new
-maze.initialization(filename)
-#Create new solution for maze
-maze_solution = Solution.new
-path = maze_solution.path
+maze = Maze.new(filename)
+path = maze.path
 
-puts 
+puts "--------------------"
 puts "The path from start point 's' to finish point 'f' is:"
 p path
